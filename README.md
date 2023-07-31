@@ -18,23 +18,23 @@ Before using Presento, ensure you have the following prerequisites set up:
      * **Node Version Manager (NVM):** For better compatibility, we recommend using NVM to manage your Node.js versions. Install NVM by following the instructions here: [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm).
 
 * **pip:** pip is the package installer for Python. It is usually installed by default when you install Python. However, make sure you have pip installed and it is up to date. You can check the version of pip by running the following command:
-```
-pip --version
-```
+    ```
+    pip --version
+    ```
 
 ## Installation
 To install and use Presento, follow the steps given below:
 
-* Fork the carrer-scraper repository by clicking the "Fork" button at the top right corner of the repository page. This will create a copy of the repository under your GitHub account.
+* Fork the Presento-App repository by clicking the "Fork" button at the top right corner of the repository page. This will create a copy of the repository under your GitHub account.
 
 * Clone the forked repository to your local machine:
-```
-git clone https://github.com/{YOUR-USERNAME}/Presento-App
-```
+    ```
+    git clone https://github.com/{YOUR-USERNAME}/Presento-App
+    ```
 * Navigate to the project directory:
-```
-cd Presento-App
-```
+    ```
+    cd Presento-App
+    ```
 * To run the Flask API install the necessary Python packages by running the following command in the following directories:
    * ```
      #navigate to the url to json api directory
@@ -72,16 +72,16 @@ cd Presento-App
         The API will be running at [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 * Now when the Flask APIs are running, run the React App. To run the react app, follow the below commands:
-```
-# navigate to the presento directory
-cd presento
+    ```
+    # navigate to the presento directory
+    cd presento
 
-# install packages
-npm i
+    # install packages
+    npm i
 
-# run the app
-npm run dev
-```
+    # run the app
+    npm run dev
+    ```
 The React App will be running on [http://localhost:5173/](http://localhost:5173/)
 
 
