@@ -5,6 +5,11 @@ import FooterInput from './Footer';
 import PDFViewer from './PDFViewer';
 
 
+/**
+ * Renders the main component of the application.
+ *
+ * @return {JSX.Element} The rendered main component.
+ */
 export default function App() {
   return (
     <Router>

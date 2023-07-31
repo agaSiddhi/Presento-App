@@ -4,6 +4,11 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { useState, useEffect } from "react";
 import LoadingAnimation from "./LoadingAnimation";
 
+/**
+ * Renders a PDF viewer component.
+ *
+ * @return {JSX.Element} The PDF viewer component.
+ */
 export default function PDFViewer() {
   const [loading, setLoading] = useState(false);
   const [link, setLink] = useState("");
@@ -12,6 +17,11 @@ export default function PDFViewer() {
   const [pdfLink, setPdfLink] = useState("");
   const [pptxLink, setPptxLink] = useState("");
 
+  /**
+   * Makes a POST request to the server to generate a PPT file.
+   *
+   * @return {Promise<void>} A promise that resolves when the PPT file is generated.
+   */
   const makePPT = async () => {
     const response = await fetch("http://127.0.0.1:5000/api/makePPT", {
       method: "POST",
@@ -26,6 +36,12 @@ export default function PDFViewer() {
     setResponseUrl(data);
   };
 
+  /**
+   * Submits the form data asynchronously.
+   *
+   * @param {Event} e - The event object.
+   * @return {Promise<void>} A promise that resolves when the form data is submitted.
+   */
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -33,6 +49,12 @@ export default function PDFViewer() {
       url: link,
     };
 
+    /**
+     * Asynchronously sends a POST request to the specified URL with the given data.
+     *
+     * @param {any} data - The data to be sent in the request body.
+     * @return {Promise<string>} A promise that resolves to the response text.
+     */
     async function postData(data) {
       const response = await fetch("http://127.0.0.1:4000/scrape_and_convert", {
         method: "POST",

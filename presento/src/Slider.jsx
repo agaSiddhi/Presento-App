@@ -7,6 +7,11 @@ import image2 from "./assets/images/image2.png";
 import image3 from "./assets/images/image3.png";
 import image4 from "./assets/images/image4.jpeg";
 
+/**
+ * Initializes a Slider component with a list of slides and navigation controls.
+ *
+ * @return {JSX.Element} The rendered Slider component.
+ */
 function Slider() {
   const slides = [
     {
