@@ -29,6 +29,11 @@ def make():
         title = slide.shapes.title
         title.text = data["presentationTitle"]
 
+        name = title.text.replace(" ", "_")
+        name = name.replace("(", "")
+        name = name.replace(")", "")
+        
+
         for i in range(len(data["slide"])):
             slide_layout = prs.slide_layouts[1]
             slide = prs.slides.add_slide(slide_layout)
@@ -38,19 +43,21 @@ def make():
             for j in range(len(data["slide"][i]["points"])):
                 _add_leveled_bullet(subtitle, data["slide"][i]["points"][j], 0)
         # Save the presentation to a file
-        name = title.text.replace(" ", "_")
-        prs.save(f"{name}.pptx")
-        return name
+
+        number = str(np.random.randint(low=1000))
+        finalName = name + number
+        prs.save(f"{finalName}.pptx")
+        return finalName
 
     json_data = json.loads(request.get_json())
     print(json_data)
-    name = makePPT(json_data)
+    finalName = makePPT(json_data)
 
-    command = f"pptx2pdf {name}.pptx"
+    command = f"pptx2pdf {finalName}.pptx"
     subprocess.call(command, shell=True)
 
-    file_path_pptx = f"{name}.pptx"
-    file_path_pdf = f"{name}.pdf"
+    file_path_pptx = f"{finalName}.pptx"
+    file_path_pdf = f"{finalName}.pdf"
 
     bucket = storage.bucket()
     blob1 = bucket.blob(file_path_pptx)
@@ -60,7 +67,7 @@ def make():
     blob2.upload_from_filename(file_path_pdf)
     blob2.make_public()
 
-    data = jsonify({"name": name, "url_pptx": blob1.public_url, "url_pdf": blob2.public_url})
+    data = jsonify({"name": finalName, "url_pptx": blob1.public_url, "url_pdf": blob2.public_url})
 
     return data
 

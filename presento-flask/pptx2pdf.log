@@ -1,5 +1,0 @@
-
-command: /usr/bin/libreoffice --headless --invisible --convert-to pdf --outdir . Conclusion.pptx
-pid: 47271
-convert /home/agasiddhi/Documents/presento-app/presento-flask/Conclusion.pptx -> /home/agasiddhi/Documents/presento-app/presento-flask/Conclusion.pdf using filter : impress_pdf_Export
-/usr/bin/libreoffice status: SUCCESS

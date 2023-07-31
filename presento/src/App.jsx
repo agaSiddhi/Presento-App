@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import Slider from './Slider';
 import FooterInput from './Footer';
 import PDFViewer from './PDFViewer';
-// import './App.css'
 
 
 export default function App() {

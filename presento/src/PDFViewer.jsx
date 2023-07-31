@@ -1,42 +1,16 @@
 import React from "react";
-import "./PDFViewer.css";
 import { storage } from "./firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 import { useState, useEffect } from "react";
-// import Lottie, { useLottie } from 'lottie-react';
-// import loadingAnimation from './assets/loading_animation.json'
 import LoadingAnimation from "./LoadingAnimation";
 
 export default function PDFViewer() {
-  const [url, setUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [link, setLink] = useState("");
   const [storedResponse, setStoredResponse] = useState("");
   const [responseUrl, setResponseUrl] = useState("");
-  const [ pdfLink, setPdfLink ] = useState("");
-  const [ pptxLink, setPptxLink ] = useState("");
-
-  // const defaultOptions = {
-  //   loop: true,
-  //   autoplay: true,
-  //   animationData: loadingAnimation,
-  //   rendererSettings: {
-  //     preserveAspectRatio: 'xMidYMid slice'
-  //   }
-  // }
-
-  // const { View } = useLottie(defaultOptions);
-
-  useEffect(() => {
-    const storageRef = ref(storage, "abhishek/OOPS.pdf");
-    getDownloadURL(storageRef)
-      .then((url) => {
-        setUrl(url);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const [pdfLink, setPdfLink] = useState("");
+  const [pptxLink, setPptxLink] = useState("");
 
   const makePPT = async () => {
     const response = await fetch("http://127.0.0.1:5000/api/makePPT", {
@@ -60,10 +34,10 @@ export default function PDFViewer() {
     };
 
     async function postData(data) {
-      const response = await fetch("https://eoenorigycrfstq.m.pipedream.net", {
+      const response = await fetch("http://127.0.0.1:4000/scrape_and_convert", {
         method: "POST",
         headers: {
-          "User-Agent": "pipedream/1",
+          Accept: "application/json",
           "Content-type": "application/json",
         },
         body: JSON.stringify(data),
@@ -98,7 +72,7 @@ export default function PDFViewer() {
       setPdfLink(responseUrl.url_pdf);
       setPptxLink(responseUrl.url_pptx);
     }
-  }, [responseUrl])
+  }, [responseUrl]);
 
   return (
     <>
