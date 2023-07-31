@@ -30,7 +30,7 @@ def scrape_medium_article(url):
     return extracted_text
 
 def get_presentation_json(text):
-    openai.api_key = "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"
+    openai.api_key = "YOUR API KEY"
 
     prompt = '''you are a presentation maker. I will be giving you article text and you have to convert that into presentation, try to make it concise and crisp and also make it in point form and strictly follow the format that I will be giving you. The format of returning is json format 
                 FORMAT:
