@@ -30,6 +30,30 @@ def scrape_medium_article(url):
     return extracted_text
 
 def get_presentation_json(text):
+    """
+    This function takes in a text and generates a presentation in JSON format.
+
+    Args:
+        text (str): The article text to be converted into a presentation.
+
+    Returns:
+        dict: A JSON object representing the presentation. The format of the JSON object is as follows:
+        {
+            "presentationTitle": "title of presentation",
+            "slide": [
+                {
+                    "title": "Title of the slide goes here",
+                    "points": ["all the points will go in this list. Write complete and descriptive sentences for each slide maximum 10-15 words long, explaining the concepts told in the text. Remember that content should be in points to enhance readability."],
+                    "imageDescription": "strictly give an image description that complements the written content and enhances the visual appeal of the slide, promoting audience understanding and engagement. You can write as 15-30 words long description."
+                }
+            ]
+        }
+
+        If the function is not able to generate the answer, it returns the JSON object with None as the value.
+
+    Raises:
+        None
+    """
     openai.api_key = "YOUR API KEY"
 
     prompt = '''you are a presentation maker. I will be giving you article text and you have to convert that into presentation, try to make it concise and crisp and also make it in point form and strictly follow the format that I will be giving you. The format of returning is json format 
@@ -46,6 +70,16 @@ def get_presentation_json(text):
                 '''
 
     def api_call(text, prompt):
+      """
+      Call the OpenAI GPT-3.5 Turbo API to generate a response based on the given text and prompt.
+
+      Args:
+          text (str): The user's input text.
+          prompt (str): The initial prompt for the conversation.
+
+      Returns:
+          str: The generated response from the API.
+      """
       completion = openai.ChatCompletion.create(
         model ="gpt-3.5-turbo-16k",
         temperature = 0.8,
@@ -63,6 +97,18 @@ def get_presentation_json(text):
 @app.route("/scrape_and_convert", methods=['POST'])
 @cross_origin()
 def scrape_and_convert():
+    """
+    Route for scraping a Medium article and generating a presentation JSON using OpenAI GPT-3.5 Turbo 16k model.
+
+    Parameters:
+    - None
+
+    Return:
+    - A JSON string containing the presentation JSON data.
+
+    Raises:
+    - HTTPError 400 if the URL is missing from the request body.
+    """
     # Get the URL from the request body
     data = request.json
     url = data.get('url')

@@ -12,6 +12,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+/**
+ * Renders the navigation bar component.
+ *
+ * @return {JSX.Element} The rendered navigation bar.
+ */
 export default function Navbar() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
