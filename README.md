@@ -25,7 +25,7 @@ pip --version
 ## Installation
 To install and use Presento, follow the steps given below:
 
-* Fork the carrer-scraper repository by clicking the "Fork" button at the top right corner of the repository page. This will create a copy of the repository under your GitHub account.
+* Fork the Presento repository by clicking the "Fork" button at the top right corner of the repository page. This will create a copy of the repository under your GitHub account.
 
 * Clone the forked repository to your local machine:
 ```
